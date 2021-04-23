@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Mesa News</string>
+
+    //Tela Login
+    <string name="bemVindo">Bem Vindo,</string>
+    <string name="signIn">Logue para continuar</string>
+    <string name="esqueceuSenha">Esqueceu Senha?</string>
+    <string name="novoUsuario">Novo Usuario?</string>
+    <string name="inscrevaSe">Inscreva-se</string>
+
+
+    //Tela Cadastro
+    <string name="cadastro">Cadastro</string>
+    <string name="cadastreContinuar">Cadastre-se para continuar</string>
+    <string name="jaCadastrado">Já tem uma conta?</string>
+
+
+    //Campos
+    <string name="login">Login</string>
+    <string name="senha">Senha</string>
+    <string name="confirmaSenha">Confirmar Senha</string>
+    <string name="email">Email</string>
+    <string name="salvar">Salvar</string>
+</resources>
