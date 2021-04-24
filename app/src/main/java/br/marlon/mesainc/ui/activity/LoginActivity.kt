@@ -2,12 +2,19 @@ package br.marlon.mesainc.ui.activity
 
 import android.app.ActivityOptions
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Pair
 import android.view.animation.AnimationUtils
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import br.marlon.mesainc.R
 import br.marlon.mesainc.databinding.ActivityLoginBinding
+import br.marlon.mesainc.model.LoginResponse
+import br.marlon.mesainc.retrofit.RetrofitInitializer
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class LoginActivity : AppCompatActivity() {
@@ -45,6 +52,50 @@ class LoginActivity : AppCompatActivity() {
                 )
                 startActivity(intent, options.toBundle())
             }
+        }
+
+        binding.btnLogin.setOnClickListener {
+
+            val email = binding.RegEmail.text.toString()
+            val password = binding.RegSenha.text.toString()
+
+            if(email.isEmpty()){
+                binding.RegEmail.error = "Email requerido"
+                binding.RegEmail.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (password.isEmpty()){
+                binding.RegSenha.error = "Senha requerida"
+                binding.RegSenha.requestFocus()
+                return@setOnClickListener
+            }
+
+            RetrofitInitializer.instance.login(email, password)
+                    .enqueue(object: Callback<LoginResponse>{
+                        override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                            Log.d("onFailure error", "onResponse - Status : " + response.code())
+                            if(response.code() == 200){
+
+                                //SharedPrefManager.getInstance(applicationContext).saveUser(response.body()?.user!!)
+
+                                val intent = Intent(applicationContext, FeedActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                                startActivity(intent)
+                                Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
+
+
+                            }else{
+                                Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                            Toast.makeText(applicationContext, t.message, Toast.LENGTH_SHORT).show()
+                        }
+
+                    })
         }
     }
 }
