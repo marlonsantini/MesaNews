@@ -1,12 +1,15 @@
 package br.marlon.mesainc.retrofit.service
 
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 interface UserClient {
 
-    @POST("login")
-    fun login()
-
-    @POST("cadastro")
-    fun cadastro()
+    @FormUrlEncoded
+    @POST("/v1/client/auth/signup")
+    fun login(
+            @Field("email") email: String,
+            @Field("password") password: String
+    ) : Any
 }
