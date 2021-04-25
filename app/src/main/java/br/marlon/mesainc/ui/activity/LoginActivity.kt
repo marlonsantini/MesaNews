@@ -77,8 +77,9 @@ class LoginActivity : AppCompatActivity() {
 
                                 val token = response.body()
                                 val intent = Intent(applicationContext, FeedActivity::class.java)
-                                startActivity(intent)
                                 Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
+                                startActivity(intent)
+                                finish()
 
                             }else{
                                 Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
