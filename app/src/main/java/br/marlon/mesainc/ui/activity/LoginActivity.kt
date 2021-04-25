@@ -3,7 +3,6 @@ package br.marlon.mesainc.ui.activity
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.util.Pair
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -74,17 +73,12 @@ class LoginActivity : AppCompatActivity() {
             RetrofitInitializer.instance.login(email, password)
                     .enqueue(object: Callback<LoginResponse>{
                         override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                            Log.d("onFailure error", "onResponse - Status : " + response.code())
-                            if(response.code() == 200){
+                            if(response.isSuccessful){
 
-                                //SharedPrefManager.getInstance(applicationContext).saveUser(response.body()?.user!!)
-
+                                val token = response.body()
                                 val intent = Intent(applicationContext, FeedActivity::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-
                                 startActivity(intent)
                                 Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
-
 
                             }else{
                                 Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()

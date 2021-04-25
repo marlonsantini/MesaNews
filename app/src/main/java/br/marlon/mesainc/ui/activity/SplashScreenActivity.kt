@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils
 import androidx.core.view.ViewCompat
 import br.marlon.mesainc.R
 import br.marlon.mesainc.databinding.ActivitySplashBinding
+import br.marlon.mesainc.storage.SharedPrefManager
 
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -27,9 +28,8 @@ class SplashScreenActivity : AppCompatActivity() {
         binding.TopImage.startAnimation(topAnim)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
-
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                val intent = Intent(this, LoginActivity::class.java)
                 val options = ActivityOptions.makeSceneTransitionAnimation(
                         this,
                         binding.TopImage, ViewCompat.getTransitionName(binding.TopImage)
@@ -41,6 +41,5 @@ class SplashScreenActivity : AppCompatActivity() {
             }
 
         }, 2000)
-
     }
 }

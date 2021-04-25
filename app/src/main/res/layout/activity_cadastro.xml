@@ -41,23 +41,6 @@
             android:gravity="bottom"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nomeTextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/nome"
-                app:passwordToggleEnabled="true"
-                android:transitionName="nome_tran"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:id="@+id/RegNome"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/emailTextInputLayout"
@@ -90,6 +73,23 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:id="@+id/RegSenha"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nomeTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nome"
+                android:transitionName="nome_tran"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:id="@+id/RegNome"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
