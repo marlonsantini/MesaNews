@@ -1,8 +1,6 @@
 package br.marlon.mesainc.retrofit.service
 
-import br.marlon.mesainc.model.LoginResponse
-import br.marlon.mesainc.model.DefaultResponse
-import br.marlon.mesainc.model.NewsResponse
+import br.marlon.mesainc.model.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -25,8 +23,8 @@ interface UserClient {
     ) : Call<LoginResponse>
 
     @GET("news/highlights")
-    fun getNewHigh(): Call<NewsResponse>
+    fun getNewHigh(): Call<News>
 
     @GET("news?current_page=&per_page=&published_at=")
-    fun getNews(): Call<NewsResponse>
+    fun getNews(): Call<News>
 }
