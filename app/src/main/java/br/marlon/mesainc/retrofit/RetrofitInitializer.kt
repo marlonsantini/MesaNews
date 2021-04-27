@@ -10,7 +10,9 @@ object RetrofitInitializer {
 
     private const val BASE_URL = "https://mesa-news-api.herokuapp.com/v1/client/"
 
-    private val AUTH = "Basic "+ Base64.encodeToString("marlon:123456".toByteArray(), Base64.NO_WRAP)
+    //private val AUTH = "Basic "+ Base64.encodeToString("marlon:123456".toByteArray(), Base64.NO_WRAP)
+    private val AUTH = "Berear eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjU5LCJlbWFpbCI6ImRpbWFzLmdhYnJpZWxAenJvYmFuay5jb20uYnIifQ.a3j7sRx8FIedZCfDGLocduOYpcibfIenX7TVJjv6Sis"
+
 
     private val okHttpClient = OkHttpClient.Builder()
             .addInterceptor { chain ->

@@ -2,11 +2,9 @@ package br.marlon.mesainc.retrofit.service
 
 import br.marlon.mesainc.model.LoginResponse
 import br.marlon.mesainc.model.DefaultResponse
+import br.marlon.mesainc.model.NewsResponse
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface UserClient {
 
@@ -25,4 +23,10 @@ interface UserClient {
             @Field("email") email: String,
             @Field("password") password: String
     ) : Call<LoginResponse>
+
+    @GET("news/highlights")
+    fun getNewHigh(): Call<NewsResponse>
+
+    @GET("news?current_page=&per_page=&published_at=")
+    fun getNews(): Call<NewsResponse>
 }
