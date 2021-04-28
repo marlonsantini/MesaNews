@@ -75,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
                         override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                             if(response.isSuccessful){
 
-                                val token = response.body()
+                                //val token = response.body()
                                 val intent = Intent(applicationContext, FeedActivity::class.java)
                                 Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
                                 startActivity(intent)

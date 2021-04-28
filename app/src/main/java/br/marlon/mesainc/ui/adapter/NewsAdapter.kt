@@ -3,17 +3,17 @@ package br.marlon.mesainc.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.marlon.mesainc.databinding.RowItemBinding
+import br.marlon.mesainc.databinding.RowNewsBinding
 import br.marlon.mesainc.model.NewsItem
 import coil.load
 
 
 class NewsAdapter( private val artigos: List<NewsItem>) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
-    class NewsViewHolder(val binding: RowItemBinding) : RecyclerView.ViewHolder(binding.root)
+    class NewsViewHolder(val binding: RowNewsBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
-        val binding = RowItemBinding
+        val binding = RowNewsBinding
                 .inflate(LayoutInflater.from(parent.context), parent, false)
         return NewsViewHolder(binding)
     }

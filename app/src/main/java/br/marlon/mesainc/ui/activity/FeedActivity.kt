@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import br.marlon.mesainc.databinding.ActivityFeedBinding
 import br.marlon.mesainc.model.NewsItem
 import br.marlon.mesainc.model.News
@@ -30,17 +31,23 @@ class FeedActivity : AppCompatActivity() {
     }
 
     private fun getNews() {
-        RetrofitInitializer.instance.getNewHigh()
+        RetrofitInitializer.instance.getNews()
                 .enqueue(object : Callback<News> {
                     override fun onResponse(call: Call<News>, response: Response<News>) {
-                        val news = response.body()!!.data
+                        //val news = response.body()!!.data
                         if (response.isSuccessful) {
                             d("marlon", "onResponde:  ${response.body()!!.data}")
 
-                            binding.rvNewsHigh.adapter.apply {
-                                val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this@FeedActivity)
-                                binding.rvNewsHigh.setLayoutManager(layoutManager)
-                                binding.rvNewsHigh.adapter = NewsAdapter(response.body()!!.data)
+                            binding.rvNews.adapter.apply {
+                                val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this@FeedActivity, LinearLayoutManager.VERTICAL, false)
+                                binding.rvNews.setLayoutManager(layoutManager)
+                                binding.rvNews.adapter = NewsAdapter(response.body()!!.data)
+                            }
+
+                            binding.vpNewsHigh.adapter.apply {
+                                val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this@FeedActivity, LinearLayoutManager.HORIZONTAL, false)
+                                binding.vpNewsHigh.setLayoutManager(layoutManager)
+                                binding.vpNewsHigh.adapter = NewsAdapter(response.body()!!.data)
                             }
                             Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
 
@@ -55,12 +62,11 @@ class FeedActivity : AppCompatActivity() {
                     }
                 })
     }
-
-    private fun configureList(news: News) {
-        binding.rvNewsHigh.adapter.apply {
-            val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this@FeedActivity)
-            binding.rvNewsHigh.setLayoutManager(layoutManager)
-        }
-
-    }
 }
+//    private fun configureList(news: News) {
+//        binding.rvNews.adapter.apply {
+//            val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this@FeedActivity)
+//            binding.rvNews.setLayoutManager(layoutManager)
+//            //binding.rvNewsHigh.adapter = NewsAdapter(response.body()!!.data)
+//        }
+//    }

@@ -56,7 +56,7 @@ class CadastroActivity : AppCompatActivity() {
                         override fun onResponse(call: Call<DefaultResponse>, response: Response<DefaultResponse>) {
                             if (response.isSuccessful) {
 
-                                val token = response.body()
+                                //val token = response.body()
                                 val intent = Intent(applicationContext, FeedActivity::class.java)
                                 Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
                                 startActivity(intent)

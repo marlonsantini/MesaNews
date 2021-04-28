@@ -22,4 +22,7 @@
     <string name="nome">Nome</string>
     <string name="email">Email</string>
     <string name="salvar">Salvar</string>
+
+    //Loren
+    <string name="loren">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
 </resources>

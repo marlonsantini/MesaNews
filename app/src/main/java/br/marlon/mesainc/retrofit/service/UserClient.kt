@@ -23,7 +23,7 @@ interface UserClient {
     ) : Call<LoginResponse>
 
     @GET("news/highlights")
-    fun getNewHigh(): Call<News>
+    fun getNewsHigh(): Call<News>
 
     @GET("news?current_page=&per_page=&published_at=")
     fun getNews(): Call<News>
