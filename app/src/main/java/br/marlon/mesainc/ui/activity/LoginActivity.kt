@@ -1,17 +1,18 @@
 package br.marlon.mesainc.ui.activity
 
 import android.app.ActivityOptions
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Pair
+import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.marlon.mesainc.R
 import br.marlon.mesainc.databinding.ActivityLoginBinding
 import br.marlon.mesainc.model.LoginResponse
-import br.marlon.mesainc.retrofit.RetrofitInitializer
+import br.marlon.mesainc.retrofit.service.RetrofitInitializer
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -73,6 +74,8 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            binding.pd.visibility = View.VISIBLE
+
             RetrofitInitializer.instance.login(email, password)
                     .enqueue(object: Callback<LoginResponse>{
                         override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
@@ -86,6 +89,7 @@ class LoginActivity : AppCompatActivity() {
 
                             }else{
                                 Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
+                                binding.pd.visibility = View.GONE
                             }
                         }
 

@@ -2,11 +2,12 @@ package br.marlon.mesainc.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.marlon.mesainc.databinding.ActivityCadastroBinding
 import br.marlon.mesainc.model.DefaultResponse
-import br.marlon.mesainc.retrofit.RetrofitInitializer
+import br.marlon.mesainc.retrofit.service.RetrofitInitializer
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,10 +48,12 @@ class CadastroActivity : AppCompatActivity() {
             }
 
             if (nome.isEmpty()) {
-                binding.RegNome.error = "Nome requerida"
+                binding.RegNome.error = "Nome requerido"
                 binding.RegNome.requestFocus()
                 return@setOnClickListener
             }
+
+            binding.pd.visibility = View.VISIBLE
 
             RetrofitInitializer.instance.cadastro(nome, email, password)
                     .enqueue(object : Callback<DefaultResponse> {
@@ -65,11 +68,13 @@ class CadastroActivity : AppCompatActivity() {
 
                             } else {
                                 Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
+                                binding.pd.visibility = View.GONE
                             }
                         }
 
                         override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
                             Toast.makeText(applicationContext, t.message, Toast.LENGTH_SHORT).show()
+                            binding.pd.visibility = View.GONE
                         }
 
                     })

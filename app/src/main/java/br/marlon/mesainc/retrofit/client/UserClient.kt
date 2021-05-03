@@ -1,4 +1,4 @@
-package br.marlon.mesainc.retrofit.service
+package br.marlon.mesainc.retrofit.client
 
 import br.marlon.mesainc.model.*
 import retrofit2.Call

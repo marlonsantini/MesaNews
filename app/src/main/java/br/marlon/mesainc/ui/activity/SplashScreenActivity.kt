@@ -40,6 +40,6 @@ class SplashScreenActivity : AppCompatActivity() {
                 TODO("VERSION.SDK_INT < LOLLIPOP")
             }
 
-        }, 2000)
+        }, 3000)
     }
 }

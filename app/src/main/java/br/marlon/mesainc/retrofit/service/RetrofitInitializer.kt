@@ -1,7 +1,6 @@
-package br.marlon.mesainc.retrofit
+package br.marlon.mesainc.retrofit.service
 
-import android.util.Base64
-import br.marlon.mesainc.retrofit.service.UserClient
+import br.marlon.mesainc.retrofit.client.UserClient
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

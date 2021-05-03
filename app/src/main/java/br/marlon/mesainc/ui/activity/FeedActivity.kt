@@ -1,8 +1,6 @@
 package br.marlon.mesainc.ui.activity
 
-import android.R
 import android.os.Bundle
-import android.util.Log.d
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,7 +8,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import br.marlon.mesainc.databinding.ActivityFeedBinding
 import br.marlon.mesainc.model.News
-import br.marlon.mesainc.retrofit.RetrofitInitializer
+import br.marlon.mesainc.retrofit.service.RetrofitInitializer
 import br.marlon.mesainc.ui.adapter.NewsAdapter
 import br.marlon.mesainc.ui.adapter.NewsHighAdapter
 import retrofit2.Call
