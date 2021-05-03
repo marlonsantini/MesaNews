@@ -43,13 +43,13 @@ class LoginActivity : AppCompatActivity() {
             //Animação layout
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                 val options = ActivityOptions.makeSceneTransitionAnimation(
-                    this,
-                    Pair.create(binding.emailTextInputLayout, "email_tran"),
-                    Pair.create(binding.passwordTextInputLayout, "password_tran"),
-                    Pair.create(binding.tvBemVindo, "logo_text"),
-                    Pair.create(binding.tvNovoUsuario, "novousuario_tran"),
-                    Pair.create(binding.tvInscrevaSe, "cadastro_tran"),
-                    Pair.create(binding.btnLogin, "button_tran")
+                        this,
+                        Pair.create(binding.emailTextInputLayout, "email_tran"),
+                        Pair.create(binding.passwordTextInputLayout, "password_tran"),
+                        Pair.create(binding.tvBemVindo, "logo_text"),
+                        Pair.create(binding.tvNovoUsuario, "novousuario_tran"),
+                        Pair.create(binding.tvInscrevaSe, "cadastro_tran"),
+                        Pair.create(binding.btnLogin, "button_tran")
 
                 )
                 startActivity(intent, options.toBundle())
@@ -62,13 +62,13 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.RegEmail.text.toString()
             val password = binding.RegSenha.text.toString()
 
-            if(email.isEmpty()){
+            if (email.isEmpty()) {
                 binding.RegEmail.error = "Email requerido"
                 binding.RegEmail.requestFocus()
                 return@setOnClickListener
             }
 
-            if (password.isEmpty()){
+            if (password.isEmpty()) {
                 binding.RegSenha.error = "Senha requerida"
                 binding.RegSenha.requestFocus()
                 return@setOnClickListener
@@ -77,17 +77,19 @@ class LoginActivity : AppCompatActivity() {
             binding.pd.visibility = View.VISIBLE
 
             RetrofitInitializer.instance.login(email, password)
-                    .enqueue(object: Callback<LoginResponse>{
+                    .enqueue(object : Callback<LoginResponse> {
                         override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                            if(response.isSuccessful){
+                            if (response.isSuccessful) {
 
-                                //val token = response.body()
                                 val intent = Intent(applicationContext, FeedActivity::class.java)
-                                Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
+                                //Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
                                 startActivity(intent)
                                 finish()
 
-                            }else{
+                            } else if (response.code() == 401) {
+                                Toast.makeText(applicationContext, "Credencial Inválida", Toast.LENGTH_LONG).show()
+                                binding.pd.visibility = View.GONE
+                            } else {
                                 Toast.makeText(applicationContext, response.message(), Toast.LENGTH_LONG).show()
                                 binding.pd.visibility = View.GONE
                             }
