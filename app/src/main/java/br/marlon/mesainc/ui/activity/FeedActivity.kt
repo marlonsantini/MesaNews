@@ -13,7 +13,6 @@ import br.marlon.mesainc.model.News
 import br.marlon.mesainc.retrofit.RetrofitInitializer
 import br.marlon.mesainc.ui.adapter.NewsAdapter
 import br.marlon.mesainc.ui.adapter.NewsHighAdapter
-import me.relex.circleindicator.CircleIndicator2
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,7 +38,7 @@ class FeedActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<News>, response: Response<News>) {
                     //val news = response.body()!!.data
                     if (response.isSuccessful) {
-                        d("marlon", "onResponde:  ${response.body()!!.data}")
+                        //d("marlon", "onResponde:  ${response.body()!!.data}")
 
                         //LISTA NOTICIAS
                         binding.rvNews.adapter.apply {
@@ -49,7 +48,8 @@ class FeedActivity : AppCompatActivity() {
                                 false
                             )
                             binding.rvNews.layoutManager = layoutManager
-                            binding.rvNews.adapter = NewsAdapter(response.body()!!.data)
+                            binding.rvNews.adapter =
+                                NewsAdapter(this@FeedActivity, response.body()!!.data)
                         }
 
                         // LISTA NOTICIAS DESTAQUE

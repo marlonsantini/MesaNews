@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Pair
 import android.view.animation.AnimationUtils
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.marlon.mesainc.R
@@ -48,8 +49,10 @@ class LoginActivity : AppCompatActivity() {
                     Pair.create(binding.tvNovoUsuario, "novousuario_tran"),
                     Pair.create(binding.tvInscrevaSe, "cadastro_tran"),
                     Pair.create(binding.btnLogin, "button_tran")
+
                 )
                 startActivity(intent, options.toBundle())
+                finish()
             }
         }
 

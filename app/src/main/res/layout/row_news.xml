@@ -58,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingEnd="30dp"
-                    card_view:srcCompat="@drawable/ic_fav_no" />
+                    card_view:srcCompat="@drawable/ic_star_on" />
 
                 <ImageView
                     android:id="@+id/imageView4"
