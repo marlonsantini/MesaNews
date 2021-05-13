@@ -65,6 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
+                    android:text="john@doe.com.br"
                     android:id="@+id/RegEmail"
                     />
             </com.google.android.material.textfield.TextInputLayout>
@@ -84,6 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
+                    android:text="123456"
                     android:id="@+id/RegSenha"
                     />
             </com.google.android.material.textfield.TextInputLayout>
